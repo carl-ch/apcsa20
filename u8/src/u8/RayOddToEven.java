@@ -8,7 +8,7 @@ package u8;
 public class RayOddToEven {
 	public static String go(int[] ray) {
 		int first = -1;
-		int second = -1;
+		int second = -2;
 		int diff = -1;
 		int c = 0;
 		for (int i = 0; i <= ray.length - 1; i++) {
@@ -18,7 +18,7 @@ public class RayOddToEven {
 				if (first != -1) {
 					i = ray.length;
 				}
-				while ((second == -1) && (c < ray.length - 1)) {
+				while ((second == -2) && (c < ray.length - 1)) {
 					if (ray[c] % 2 == 0) {
 						second = c;
 					}
@@ -27,6 +27,6 @@ public class RayOddToEven {
 			}
 		}
 		diff = second - first;
-		return first + " " + second + " " + diff;
+		return "first; " + first + ", second; " + second + ", result; " + diff;
 	}
 }
