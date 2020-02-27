@@ -19,15 +19,16 @@ public class ListOddToEven
 		for(int i = 0; i<ray.size(); i++) {
 			curr = ray.get(i);
 			if(curr % 2 == 1) {
-				first = ray.get(i);
+				first = i;
 				for(int i2 = ray.size()-1;i2>=0;i2--) {
 					curr2 = ray.get(i2);
 					if(curr2 % 2 == 0) {
-						second = ray.get(i2);
+						second = i2;
 						return second-first;
 					}
 				}
 			}
 		}
+		return -1;
 	}
 }
