@@ -11,6 +11,8 @@ public class Card
 	//instance variables
 		String suit;
 		int face;
+		String faceS;
+		int pointValue;
 
   	//constructors
 	public Card() {
@@ -22,6 +24,12 @@ public class Card
 		setSuit(s);
 		setFace(f);
 	}
+	
+	public Card(String r, String f, int p) {
+		setSuit(r);
+		setFaceString(f);
+		setPointValue(p);
+	}
 
 	// modifiers
 		//set methods
@@ -32,12 +40,22 @@ public class Card
 	public void setFace(int f) {
 		face = f;
 	}
+	
+	public void setFaceString(String f) {
+		faceS = f;
+	}
+	
+	public void setPointValue(int p) {
+		pointValue = p;
+	}
 
   	//accessors
 		//get methods
 	public String getA() {
 		return suit + ", " + FACES[face];
 	}
+	
+	public 
 
   	//toString
 	public String toString() {

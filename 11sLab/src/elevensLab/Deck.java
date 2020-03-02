@@ -18,14 +18,26 @@ public class Deck{
 	private int t;
 
    //make a Deck constructor
-	int s;
+	int z;
 	public Deck() {
 		top = 51;
 		t = top;
 		for(int i=0; i<=3; i++) {
-			s = i;
+			z = i;
 			for(int i2=1; i2<=13; i2++) {
-				cards.add(new Card(SUITS[s], i2));
+				cards.add(new Card(SUITS[z], i2));
+			}
+		}
+	}
+	
+	int s;
+	public Deck(String[] ranks, String[] suits, int[] pointValues) {
+		top = 51;
+		t = top;
+		for(int i3=0; i3<=3; i3++) {
+			s = i3;
+			for(int i4=1; i4<=13; i4++) {
+				cards.add(new Card(ranks[i4], suits[s], pointValues[i4]));
 			}
 		}
 	}
@@ -48,8 +60,21 @@ public class Deck{
 		
 		return o;
 
-		
 	}
+	
+	public int Size() {
+		return t;
+	}
+	
+	public boolean isEmpty() {
+		boolean empty;
+		if(t<=0)
+			empty = true;
+		else
+			empty = false;
+		return empty;
+	}
+	
    //write a shuffle() method
    	//use Colletions.shuffle
    	//reset the top card 
