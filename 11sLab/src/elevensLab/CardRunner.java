@@ -12,7 +12,7 @@ public class CardRunner
 	{
 	
 		Card one = new Card("SPADES", 9);
-		out.println(one.getA());
+		out.println(one.getAct());
 
 		Card two = new Card("DIAMONDS", 1);
 		out.println(two);
