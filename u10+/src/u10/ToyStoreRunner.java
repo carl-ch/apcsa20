@@ -1,7 +1,7 @@
 package u10;
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
+// (c) A+ Computer Science
+// www.apluscompsci.com
+// Name -
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -12,7 +12,10 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-		ToyStore test = new ToyStore("sorry bat sorry sorry sorry train train teddy teddy ball ball");
-		out.print(test);
+		ToyStore10 sto = new ToyStore10("");
+		System.out.println( sto );
+		sto.loadToys("sorry bat sorry sorry sorry train train teddy teddy ball ball" );
+		System.out.println( sto );	
+		System.out.println( "max == " + sto.getMostFrequentToy() );		
 	}
 }
