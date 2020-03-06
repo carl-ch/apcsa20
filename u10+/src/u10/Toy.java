@@ -43,6 +43,6 @@ public class Toy
 
 	public String toString()
 	{
-	   return getName() + " (count is " + getCount() + ")";
+	   return getName() + " (count " + getCount() + ")";
 	}
 }

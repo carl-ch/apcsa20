@@ -70,11 +70,11 @@ public class ToyStore10 {
   		return placeholder;
 	}
 
-	public void myName(){
-		System.out.println("Carl Cheng");
+	public String myName(){
+		return "\nCarl Cheng\n";
 	}
 	
 	public String toString() {
-		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; " + sortToysByCount();
+		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; " + sortToysByCount() + myName();
 	}
 }
