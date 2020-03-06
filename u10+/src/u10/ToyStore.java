@@ -15,46 +15,62 @@ import java.util.HashSet;
 import static java.lang.System.*;
 
 public class ToyStore {
+	private Toy t = new Toy();
 	private ArrayList<Toy> toyList;
 	private String[] toyRay;
-	private String out;
 
-	public ToyStore( String toys ) {
+	public ToyStore(String toys) {
+		toyList  = new ArrayList<Toy>();
 		loadToys(toys);
-		toyString();
 	}
 
-	public void loadToys( String toys )
-	{
+	public void loadToys(String toys) {
 		toyRay = toys.split(" ");
-		List<String> toyRayList = Arrays.asList(toyRay);
-		Set<String> s = new HashSet<String>(toyRayList);
-		for(String k: toyRay) {
-			int i = 0;
-			Toy(k, Collections.frequency(toyRayList,str));
-		}
-		toyList = Arrays.asList(toyRay);
-	}
-	
-	public void toyString() {
-		Set<String> s = new HashSet<String>(toyL);
-		for (String str: s) {
-			out += str + " " +Collections.frequency(toyL,str) + "\n";
+		@SuppressWarnings("resource")
+		Scanner next = new Scanner(toys);
+		while (next.hasNext()) {
+			Toy t2;
+			String temp = next.next();
+			Toy tst = getThatToy(temp);
+			if (tst == null) {
+				t2 = new Toy(temp, 1);
+				toyList.add(t2);
+			} else
+				tst.setCount(tst.getCount() + 1);
 		}
 	}
 
 	public Toy getThatToy(String nm) {
+		for (Toy k : toyList) {
+			if (k.getName().equals(nm))
+				return k;
+		}
 		return null;
 	}
 
-	public String getMostFrequentToy() {
-		return "";
+	public Toy getMostFrequentToy() {
+		int currentMax = 0;
+		Toy currentToy = new Toy();
+		for(Toy y: toyList) {
+			if(y.getCount() > currentMax) {
+				currentMax = y.getCount();
+				currentToy = y;
+			}
+		}
+		return currentToy;
 	}
 
-	public void sortToysByCount() {
+	public ArrayList<Toy> sortToysByCount() {
+  		ArrayList<Toy> placeholder = new ArrayList<Toy>();
+  		while(toyList.size() > 0)
+  		{
+  			placeholder.add(getMostFrequentToy());
+  			toyList.remove(getMostFrequentToy());
+  		}
+  		return placeholder;
 	}
 
 	public String toString() {
-		return out;
+		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; " + sortToysByCount();
 	}
 }
