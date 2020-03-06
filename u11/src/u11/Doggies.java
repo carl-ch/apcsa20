@@ -11,14 +11,17 @@ public class Doggies
 
 	public Doggies(int size)
 	{
-		//point pups at a new arry of Dog
-		
+		//point pups at a new array of Dog
+		pups = new Dog[size];
 	}
 	
 	public void set(int spot, int age, String name)
 	{
 		//put a new Dog in the array at spot 
 		//make sure spot is in bounds		
+		if(spot<5) {
+			pups[spot] = new Dog(age, name);
+		}
 	}
 
 	public String getNameOfOldest()
