@@ -70,6 +70,10 @@ public class ToyStore {
   		return placeholder;
 	}
 
+	public void myName(){
+		System.out.println("Carl Cheng");
+	}
+	
 	public String toString() {
 		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; " + sortToysByCount();
 	}
