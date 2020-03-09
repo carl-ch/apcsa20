@@ -4,10 +4,6 @@ package u10;
 // www.apluscompsci.com
 // Name -
 
-// (c) A+ Computer Science
-// www.apluscompsci.com
-// Name -
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;

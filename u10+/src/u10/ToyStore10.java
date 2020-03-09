@@ -74,7 +74,7 @@ public class ToyStore10 {
 	}
 
 	public String myName() {
-		return "\nCarl Cheng\n";
+		return "\n(Carl Cheng)\n";
 	}
 
 	public String toString() {
