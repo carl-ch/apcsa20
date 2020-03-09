@@ -18,6 +18,10 @@ public class ToyStore10 {
 	private Toy t = new Toy();
 	private ArrayList<Toy> toyList;
 	private String[] toyRay;
+	
+	public ToyStore10() {
+		toyList  = new ArrayList<Toy>();
+	}
 
 	public ToyStore10(String toys) {
 		toyList  = new ArrayList<Toy>();
