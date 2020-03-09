@@ -18,13 +18,13 @@ public class ToyStore10 {
 	private Toy t = new Toy();
 	private ArrayList<Toy> toyList;
 	private String[] toyRay;
-	
+
 	public ToyStore10() {
-		toyList  = new ArrayList<Toy>();
+		toyList = new ArrayList<Toy>();
 	}
 
 	public ToyStore10(String toys) {
-		toyList  = new ArrayList<Toy>();
+		toyList = new ArrayList<Toy>();
 		loadToys(toys);
 	}
 
@@ -55,8 +55,8 @@ public class ToyStore10 {
 	public Toy getMostFrequentToy() {
 		int currentMax = 0;
 		Toy currentToy = new Toy();
-		for(Toy y: toyList) {
-			if(y.getCount() > currentMax) {
+		for (Toy y : toyList) {
+			if (y.getCount() > currentMax) {
 				currentMax = y.getCount();
 				currentToy = y;
 			}
@@ -65,20 +65,20 @@ public class ToyStore10 {
 	}
 
 	public ArrayList<Toy> sortToysByCount() {
-  		ArrayList<Toy> placeholder = new ArrayList<Toy>();
-  		while(toyList.size() > 0)
-  		{
-  			placeholder.add(getMostFrequentToy());
-  			toyList.remove(getMostFrequentToy());
-  		}
-  		return placeholder;
+		ArrayList<Toy> placeholder = new ArrayList<Toy>();
+		while (toyList.size() > 0) {
+			placeholder.add(getMostFrequentToy());
+			toyList.remove(getMostFrequentToy());
+		}
+		return placeholder;
 	}
 
-	public String myName(){
+	public String myName() {
 		return "\nCarl Cheng\n";
 	}
-	
+
 	public String toString() {
-		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; " + sortToysByCount() + myName();
+		return toyList.toString() + "\n" + "most freq; " + getMostFrequentToy() + "\n" + "sorted from most to least; "
+				+ sortToysByCount() + myName();
 	}
 }
