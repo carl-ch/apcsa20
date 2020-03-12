@@ -83,7 +83,10 @@ public class CelebrityGame {
 		if (validateCelebrity(name) && validateClue(guess, type)) {
 			if (type.equals("Musician")) {
 				current = new MusicianCelebrity(name, guess);
-			} else {
+			} else if(type.equals("Literature")) {
+				current = new LiteratureCelebrity(name, guess);
+			}
+			else {
 				current = new Celebrity(name, guess);
 			}
 			celebGameList.add(current);
@@ -115,13 +118,20 @@ public class CelebrityGame {
 		boolean valid = false;
 		if (clue.trim().length() >= 10) {
 			valid = true;
-			if (type.equalsIgnoreCase("Musician")) {
-				String[] temp = clue.split(",");
-				if (temp.length > 1) {
-					valid = true;
-				} else {
-					valid = false;
-				}
+		}
+		if (type.equalsIgnoreCase("Musician")) {
+			String[] temp = clue.split(",");
+			if (temp.length > 1) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		} else if (type.equalsIgnoreCase("Literature")) {
+			String[] tmp = clue.split(",");
+			if (tmp.length > 1) {
+				valid = true;
+			} else {
+				valid = false;
 			}
 		}
 		return valid;
