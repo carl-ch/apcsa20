@@ -45,6 +45,7 @@ public class Pc {
 
 	public void setHz() {
 		hz = stats.getOverall();
+		
 	}
 	
 	public void setAverage() {
