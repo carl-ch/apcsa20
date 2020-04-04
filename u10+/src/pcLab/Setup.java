@@ -26,52 +26,101 @@ public class Setup {
 		computerList[index] = comp;
 	}
 
+	public int getSetupLength() {
+		return computerList.length;
+	}
+
 	public double getSetupAverage() {
 		double setupSum = 0;
 		for (Pc k : computerList) {
 			setupSum += k.getAverage();
 		}
 		double classAverage = setupSum / computerList.length;
-
 		return classAverage;
 	}
 
-	public double getStudentAverage(int stuNum) {
-		return 0.0;
+	public String getPcName(int index) {
+		Pc out = null;
+		if (index < computerList.length) {
+			out = computerList[index];
+			return out.getName();
+		} else {
+			return "";
+		}
+	}
+	
+	public Pc getPc(String nm) {
+		Pc out = null;
+		for (Pc k : computerList) {
+			if (k.getName().equals(nm)) {
+				out = k;
+			}
+		}
+		return out;
 	}
 
-	public double getStudentAverage(String stuName) {
-
-		return 0.0;
+	public double getPcAverage(String nm) {
+		Pc out = null;
+		for (Pc k : computerList) {
+			if (k.getName().equals(nm)) {
+				out = k;
+			}
+		}
+		if (out == null)
+			return 0.0;
+		return out.getAverage();
 	}
 
-	public String getStudentName(int stuNum) {
-		return "";
-	}
-
-	public String getStudentWithHighestAverage() {
-		double high = Double.MIN_VALUE;
-		String hName = "";
-
+	public String getPcMaxHz() {
+		Pc out = null;
+		double hz = Double.MIN_VALUE;
+		for (Pc k : computerList) {
+			if (k.getHz() > hz) {
+				out = k;
+				hz = k.getHz();
+			}
+		}
+		String hName = out.getName();
 		return hName;
 	}
 
-	public String getStudentWithLowestAverage() {
-		double low = Double.MAX_VALUE;
-		String hName = "";
-
+	public String getPcMinHz() {
+		Pc out = null;
+		double hz = Double.MAX_VALUE;
+		for (Pc k : computerList) {
+			if (k.getHz() < hz) {
+				out = k;
+				hz = k.getHz();
+			}
+		}
+		String hName = out.getName();
 		return hName;
 	}
-
-	public String getFailureList(double failingGrade) {
-		String output = "";
-
-		return output;
+	
+	public String comparePc(String nm, String nm2) {
+		Pc out = null;
+		Pc outLess = null;
+		Pc comp = getPc(nm);
+		Pc comp2 = getPc(nm2);
+		if(comp.getHz()>comp2.getHz()) {
+			out = comp;
+			outLess = comp2;
+		}
+		else if(comp.getHz()<comp2.getHz()){
+			out = comp2;
+			outLess = comp;
+		}
+		else {
+			return "the two computers' clocks are equal";
+		}
+		return out.getName() + " has a higher clock than " + outLess.getName() + "\n";
 	}
 
 	public String toString() {
-		String output = "" + "\n";
-
+		String output = "";
+		for (Pc k : computerList) {
+			output += "name: " + k.getName() + "\n" + k.getBench().toString() + "\n";
+		}
 		return output;
 	}
 }
