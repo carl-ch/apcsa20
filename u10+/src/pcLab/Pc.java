@@ -65,7 +65,7 @@ public class Pc {
 
 	public String toString() {
 		String output = "";
-		output = "pc performed at efficacy:\n" + stats;
+		output = name + " performed at efficacy:\n" + stats;
 		return output;
 	}
 }

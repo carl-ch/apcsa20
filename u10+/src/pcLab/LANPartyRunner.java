@@ -44,6 +44,10 @@ public class LANPartyRunner {
 		out.println("Average Bench of all PCs: " + lan.getSetupAverage());
 		out.println("Max clock goes to: " + lan.getPcMaxHz());
 		out.println("Min clock goes to: " + lan.getPcMinHz());
-
+		lan.sortPc();
+		out.println("\n\nAfter sort: ");
+		out.println(lan);
+		out.println("binary search for 8.48 total Hz: ");
+		out.print(lan.binaryPc(0, 4, 8.48).toString());
 	}
 }

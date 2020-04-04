@@ -48,7 +48,7 @@ public class Setup {
 			return "";
 		}
 	}
-	
+
 	public Pc getPc(String nm) {
 		Pc out = null;
 		for (Pc k : computerList) {
@@ -96,24 +96,51 @@ public class Setup {
 		String hName = out.getName();
 		return hName;
 	}
-	
+
 	public String comparePc(String nm, String nm2) {
 		Pc out = null;
 		Pc outLess = null;
 		Pc comp = getPc(nm);
 		Pc comp2 = getPc(nm2);
-		if(comp.getHz()>comp2.getHz()) {
+		if (comp.getHz() > comp2.getHz()) {
 			out = comp;
 			outLess = comp2;
-		}
-		else if(comp.getHz()<comp2.getHz()){
+		} else if (comp.getHz() < comp2.getHz()) {
 			out = comp2;
 			outLess = comp;
-		}
-		else {
+		} else {
 			return "the two computers' clocks are equal";
 		}
-		return out.getName() + " has a higher clock than " + outLess.getName() + "\n";
+		return out.getName() + " has a higher clock than " + outLess.getName();
+	}
+
+	public void sortPc() {
+		Pc tempC;
+
+		for (int i = 0; i < computerList.length; i++) {
+			for (int j = i + 1; j < computerList.length; j++) {
+				if (computerList[i].getHz() > computerList[j].getHz()) {
+					tempC = computerList[i];
+					computerList[i] = computerList[j];
+					computerList[j] = tempC;
+				}
+			}
+		}
+	}
+
+	public Pc binaryPc(int i, int i2, double find) {
+		if (i2 > 0) {
+			int mid = 1 + (i2 - 1) / 2;
+			if (computerList[mid].getHz() == find) {
+				return computerList[mid];
+			}
+			if (computerList[mid].getHz() > find) {
+				return binaryPc(i, mid - 1, find);
+			} else {
+				return binaryPc(mid + 1, i2, find);
+			}
+		}
+		return null;
 	}
 
 	public String toString() {
