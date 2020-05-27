@@ -14,9 +14,11 @@ import javax.imageio.ImageIO;
 public class Ship extends MovingThing {
 	private int speed;
 	private Image image;
+	private static int wid;
 
 	public Ship() {
 		this(10, 10, 10, 10, 10);
+		wid = 10;
 	}
 
 	public Ship(int x, int y) {
@@ -31,12 +33,17 @@ public class Ship extends MovingThing {
 	public Ship(int x, int y, int w, int h, int s) {
 		super(x, y, w, h);
 		speed = s;
+		wid = w;
 		try {
 			URL url = getClass().getResource("/starfighterProj/ship.jpg");
 			image = ImageIO.read(url);
 		} catch (Exception e) {
 			System.out.println("no img");
 		}
+	}
+	
+	public static int getShipWidth() {
+		return wid;
 	}
 
 	public void setSpeed(int s) {

@@ -20,12 +20,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private Alien alienHolder;
 
-	/*
-	 * uncomment once you are ready for this part
-	 *
-	 * private AlienHorde horde; private Bullets shots;
-	 */
+//	 uncomment once you are ready for this part
+
+	private AlienHorde horde;
+	private Bullets shots;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -37,11 +37,23 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
 		// instantiate other instance variables
 		// Ship, Alien
+
 		ship = new Ship(300, 450, 75, 75, 2);
 		alienOne = new Alien(100, 200, 45, 45, 1);
 		alienTwo = new Alien(200, 200, 45, 45, 1);
+		
+		shots = new Bullets();
+		horde = new AlienHorde(5);
+		horde.add(alienOne);
+		horde.add(alienTwo);
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
+		
+		alienHolder = new Alien(400, 200, 45, 45, 1);
+		horde.add(alienHolder);
+		alienHolder = new Alien(600, 200, 45, 45, 1);
+		horde.add(alienHolder);
 
 		setVisible(true);
 	}
@@ -54,11 +66,18 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
 		// instantiate other instance variables
 		// Ship, Alien
+
 		ship = new Ship(300, 400, 50, 50, 2);
-		alienOne = new Alien(100, 200, 50, 50, 1);
-		alienTwo = new Alien(200, 200, 50, 50, 1);
+
 		this.addKeyListener(this);
 		new Thread(this).start();
+
+		alienOne = new Alien(100, 200, 50, 50, 1);
+		alienTwo = new Alien(200, 200, 50, 50, 1);
+		shots = new Bullets();
+		horde = new AlienHorde(5);
+		horde.add(alienOne);
+		horde.add(alienTwo);
 
 		setVisible(true);
 	}
@@ -67,11 +86,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		paint(window);
 	}
 
-	public void paint(Graphics window) {
+	public void paint(Graphics window){
 		// set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D) window;
 
-		// take a snap shop of the current screen and same it as an image
+		// take a snap shot of the current screen and same it as an image
 		// that is the exact same width and height as the current screen
 		if (back == null)
 			back = (BufferedImage) (createImage(getWidth(), getHeight()));
@@ -84,29 +103,38 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		graphToBack.drawString("StarFighter ", 25, 50);
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0, 0, 800, 600);
-		
-		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
 
 		if (keys[0] == true) {
 			ship.move("LEFT");
 		}
-		
+
 		if (keys[1] == true) {
 			ship.move("RIGHT");
 		}
-		
+
 		if (keys[2] == true) {
 			ship.move("UP");
 		}
-		
+
 		if (keys[3] == true) {
 			ship.move("DOWN");
 		}
+		if (keys[4] == true) {
+			shots.add(new Ammo(ship.getX(), ship.getY(), 3));
+			keys[4] = false;
+		}
 
 		// add code to move Ship, Alien, etc.
-
+		
+		ship.draw(graphToBack);
+		horde.drawEmAll(graphToBack);
+		
+		shots.drawEmAll(graphToBack);
+		shots.moveEmAll();
+		
+		horde.moveEmAll();
+		horde.removeDeadOnes(shots.getList());
+		
 		// add in collision detection to see if Bullets hit the Aliens and if Bullets
 		// hit the Ship
 
@@ -114,16 +142,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_A) {
 			keys[0] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_D) {
 			keys[1] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			keys[2] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			keys[3] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -133,16 +161,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_A) {
 			keys[0] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_D) {
 			keys[1] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			keys[2] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			keys[3] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {

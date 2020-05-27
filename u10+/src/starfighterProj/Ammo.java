@@ -34,17 +34,16 @@ public class Ammo extends MovingThing {
 	}
 
 	public void draw(Graphics window) {
-		window.drawRect(super.getX(), super.getY(), 4, 1);
+		window.setColor(Color.white);
+		window.fillRect(super.getX() + Ship.getShipWidth()/2 - 2, super.getY(), 4, 14);
 	}
 
 	public void move(String direction) {
-		if (direction.equals("UP")) {
-			super.setY(super.getY() - speed);
-		}
+		super.setY(super.getY() - speed);
 		
-		else if (direction.equals("DOWN")) {
-			super.setY(super.getY() + speed);
-		}
+//		else if (direction.equals("DOWN")) {
+//			super.setY(super.getY() + speed);
+//		}
 	}
 
 	public String toString() {
