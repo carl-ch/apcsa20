@@ -9,7 +9,8 @@ import comps.Ground;
 import dinoFinal.Resource;
 import javafx.scene.paint.Color;
 
-public class Dino {
+public class Dino extends Figure {
+	
 	private static int charBaseY, charTopY, charStartX, charEndX;
 	private static int charTop, charBottom, use120180or360;
 
@@ -28,17 +29,24 @@ public class Dino {
 	BufferedImage charDead;
 
 	public Dino() {
+		super();
+		
 		image = new Resource().getResourceImage("../img/Dino-stand.png");
 		leftFoot = new Resource().getResourceImage("../img/Dino-left-up.png");
 		rightFoot = new Resource().getResourceImage("../img/Dino-right-up.png");
 		charDead = new Resource().getResourceImage("../img/Dino-big-eyes.png");
-
-		charBaseY = Ground.GROUND_Y + 5;
-		charTopY = Ground.GROUND_Y - image.getHeight() + 5;
-		charStartX = 100;
-		charEndX = charStartX + image.getWidth();
+		
+		charBaseY = this.getBaseY();
+		charTopY = this.getTopY();
+		charStartX = this.getStartX();
+		charEndX = this.getEndX();
+		
+		//	charBaseY = Ground.GROUND_Y + 5;
+		//	charTopY = Ground.GROUND_Y - image.getHeight() + 5;
+		//	charStartX = 100;
+		//	charEndX = charStartX + image.getWidth();
 		use120180or360 = charTopY - 180;
-
+		
 		casework = 1;
 		stance = AIR;
 	}
@@ -46,7 +54,7 @@ public class Dino {
 	public void create(Graphics window) {
 		charBottom = charTop + image.getHeight();
 
-		//  window.drawRect(getDino().x, getDino().y, getDino().width, getDino().height);
+		// window.drawRect(getDino().x, getDino().y, getDino().width, getDino().height);
 
 		switch (casework) {
 

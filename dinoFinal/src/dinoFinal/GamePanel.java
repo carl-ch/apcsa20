@@ -30,8 +30,8 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
 	private double subscore;
 
 	public GamePanel() {
-		WIDTH = UserInterface.WIDTH;
-		HEIGHT = UserInterface.HEIGHT;
+		WIDTH = InterfaceRunner.WIDTH;
+		HEIGHT = InterfaceRunner.HEIGHT;
 
 		ground = new Ground(HEIGHT);
 		character = new Dino();
@@ -44,6 +44,7 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
 	}
 
 	public void paint(Graphics win) {
+		//	Introduction.renderSplashFrame(win, 9000);
 		super.paint(win);
 		win.setColor(Color.white);
 		win.fillRect(0, 0, getWidth(), getHeight());
